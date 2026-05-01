@@ -1,5 +1,6 @@
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
+import { aj } from "./lib/arcjet";
 
 const isProtectedRoute = createRouteMatcher([
   "/recipe(.*)",
@@ -10,11 +11,11 @@ const isProtectedRoute = createRouteMatcher([
 
 export default clerkMiddleware(async (auth, req) => {
   // Apply Arcjet protection FIRST (before Clerk auth check)
-  // const decision = await aj.protect(req);
+  const decision = await aj.protect(req);
 
-  // if (decision.isDenied()) {
-  //   return NextResponse.json({ error: "Forbidden" }, { status: 403 });
-  // }
+  if (decision.isDenied()) {
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  }
 
   // Then apply Clerk authentication
   const { userId, redirectToSignIn } = await auth();
