@@ -2,7 +2,7 @@
 
 <img src="public/orange-logo.png" alt="Servd Logo" width="80" />
 
-# 🍽️ Servd — AI-Powered Recipe Platform
+# 🍽️ Servd - AI-Powered Recipe Platform
 
 **Discover recipes from what's already in your kitchen.**
 
